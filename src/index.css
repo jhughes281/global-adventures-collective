@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fbf3e2;
+  --color-paper-deep: #f3e4c3;
+  --color-card: #fffaf0;
+  --color-ink: #0e2444;
+  --color-ink-soft: #46556f;
+  --color-navy-deep: #081a34;
+  --color-gold: #d49a2a;
+  --color-gold-light: #f0c766;
+  --color-gold-deep: #94610a;
+  --color-lagoon: #14958e;
+  --color-hibiscus: #e5506a;
+  --color-sunset: #f28c38;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, sans-serif;
+  --font-hand: "Caveat", cursive;
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .32  0 0 0 0 .12  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-ink);
+}
+
+/* ---------- Postage stamp ---------- */
+.stamp-shadow {
+  filter: drop-shadow(0 10px 14px rgba(8, 26, 52, 0.35));
+}
+.stamp {
+  padding: 12px;
+  background: #fff8e8;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    radial-gradient(circle 5px at 0 0, transparent 97%, #000) 0 0 / 15px 15px round;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    radial-gradient(circle 5px at 0 0, transparent 97%, #000) 0 0 / 15px 15px round;
+}
+
+/* ---------- Animations ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+  width: max-content;
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow {
+  animation: spin-slow 120s linear infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--r, 0deg)); }
+}
+.bob {
+  animation: bob 6s ease-in-out infinite;
+}
+
+.dotted-map {
+  background-image: radial-gradient(rgba(240, 199, 102, 0.22) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .spin-slow, .bob { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-hibiscus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}

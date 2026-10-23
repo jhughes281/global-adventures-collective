@@ -1,106 +1,81 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen, Sparkles } from 'lucide-react'
-import RubberStamp from './RubberStamp'
+import { ArrowRight, BookOpen, Globe2, Plane, Users } from 'lucide-react'
 
 const fade = (i: number) => ({
-  initial: { opacity: 0, y: 26 },
+  initial: { opacity: 0, y: 22 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.8, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] as const },
 })
+
+const PILLARS = [
+  { icon: BookOpen, t: 'Children’s Books', s: 'Inspiring stories' },
+  { icon: Globe2, t: 'Educational Activities', s: 'Fun learning' },
+  { icon: Plane, t: 'Cultural Exploration', s: 'Discover the world' },
+  { icon: Users, t: 'Family Connection', s: 'Memorable adventures' },
+]
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-14 pt-28 md:pb-24 md:pt-36">
-      {/* decorative spinning mark */}
-      <img
-        src="img/mark.webp"
-        alt=""
-        aria-hidden
-        className="spin-slow pointer-events-none absolute -left-40 top-10 w-[34rem] max-w-none opacity-[0.05]"
-      />
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-gold-light/30 blur-3xl" />
+    <section id="top" className="relative pt-[5.25rem]">
+      <motion.div
+        initial={{ opacity: 0, scale: 1.03 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="relative overflow-hidden border-b-4 border-gold"
+      >
+        <img
+          src="img/brand/hero-banner.webp"
+          alt="Global Adventures Collective logo over a collage of Santorini, vintage suitcases, a camera, the Eiffel Tower, Big Ben and a tropical lagoon"
+          width={2000}
+          height={750}
+          fetchPriority="high"
+          className="aspect-[16/9] w-full object-cover object-center sm:aspect-[2000/750]"
+        />
+      </motion.div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <motion.div
-            {...fade(0)}
-            className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card/70 px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-gold-deep"
-          >
-            <Sparkles size={14} /> Children’s publishing · Ages 5–12
-          </motion.div>
-
-          <motion.h1
-            {...fade(1)}
-            className="font-display mt-6 text-[2.9rem] font-semibold leading-[0.98] tracking-tight text-ink sm:text-6xl lg:text-[3.9rem] xl:text-[4.3rem]"
-          >
-            Explore the world.
-            <br />
-            Create{' '}
-            <span className="relative inline-block italic text-gold-deep">
-              adventures.
-              <svg
-                viewBox="0 0 300 14"
-                className="absolute -bottom-2 left-0 w-full"
-                fill="none"
-                aria-hidden
-              >
-                <motion.path
-                  d="M3 9c40-8 90-8 140-3s100 5 154-2"
-                  stroke="#D49A2A"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.1, delay: 0.9, ease: 'easeInOut' }}
-                />
-              </svg>
-            </span>
-            <br />
-            Inspire imagination.
-          </motion.h1>
-
-          <motion.p {...fade(2)} className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-            Family-inspired storybooks, activity books and travel-themed keepsakes that
-            carry curious kids to new places, new cultures and a lifelong love of reading.
-          </motion.p>
-
-          <motion.div {...fade(3)} className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#books"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-semibold text-paper shadow-[0_10px_30px_-10px_rgba(14,36,68,0.7)] transition hover:-translate-y-0.5"
-            >
-              <BookOpen size={18} /> Discover our books
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#updates"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-ink/80 px-7 py-[0.9rem] font-semibold text-ink transition hover:bg-ink hover:text-paper"
-            >
-              Join the launch list
-            </a>
-          </motion.div>
-
-          <motion.p {...fade(4)} className="font-hand mt-8 text-2xl text-hibiscus">
-            ✈ every child deserves to see the world, one page at a time
-          </motion.p>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94, rotate: -1.5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative lg:col-span-6"
+      <div className="relative mx-auto max-w-4xl px-5 pt-12 text-center md:pt-16">
+        <motion.h1
+          {...fade(0)}
+          className="font-display text-[2.1rem] font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-[3.4rem]"
         >
-          <img
-            src="img/hero-art.webp"
-            alt="A mother and her young son explore a vintage globe together, surrounded by a travel suitcase, straw hat and tropical flowers"
-            width={1400}
-            height={933}
-            className="relative w-full mix-blend-multiply lg:scale-[1.1] [mask-image:radial-gradient(ellipse_at_center,#000_42%,transparent_71%)]"
-          />
-          <RubberStamp className="bob absolute -top-2 right-0 h-28 w-28 -rotate-12 text-hibiscus sm:h-36 sm:w-36 [--r:-12deg]" />
+          Explore the World. Create Adventures.{' '}
+          <em className="text-gold-deep">Inspire Imagination.</em>
+        </motion.h1>
+        <motion.p {...fade(1)} className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
+          Engaging children’s books and travel-inspired products that spark curiosity, celebrate
+          cultures, and encourage a lifelong love of learning.
+        </motion.p>
+        <motion.div {...fade(2)} className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="#products"
+            className="group inline-flex items-center gap-2 rounded-full bg-gold-light px-7 py-4 font-bold uppercase tracking-[0.06em] text-navy-deep shadow-[0_12px_28px_-12px_rgba(148,97,10,0.9)] transition hover:-translate-y-0.5 hover:bg-gold"
+          >
+            Explore our products
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </a>
+          <a
+            href="#story"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-ink/80 px-7 py-[0.9rem] font-semibold text-ink transition hover:bg-ink hover:text-paper"
+          >
+            Meet the founder
+          </a>
         </motion.div>
       </div>
+
+      <motion.ul
+        {...fade(3)}
+        className="relative mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-y-8 px-5 md:mt-16 md:grid-cols-4 md:divide-x md:divide-gold/40"
+      >
+        {PILLARS.map(({ icon: Icon, t, s }) => (
+          <li key={t} className="flex flex-col items-center px-3 text-center">
+            <span className="grid h-16 w-16 place-items-center rounded-full border-2 border-gold text-gold-deep">
+              <Icon size={28} strokeWidth={1.6} />
+            </span>
+            <span className="font-display mt-3 text-[0.95rem] font-semibold uppercase tracking-[0.08em] text-ink">{t}</span>
+            <span className="text-sm text-ink-soft">{s}</span>
+          </li>
+        ))}
+      </motion.ul>
     </section>
   )
 }

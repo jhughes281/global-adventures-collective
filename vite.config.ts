@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -19,6 +20,15 @@ export default defineConfig(async ({ mode }) => {
 
   return {
     base: './',
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          faq: resolve(__dirname, 'faq.html'),
+          policies: resolve(__dirname, 'policies.html'),
+        },
+      },
+    },
     plugins,
     envPrefix: ['VITE_', 'NEXT_PUBLIC_'],
     define: processEnvDefines,

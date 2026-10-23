@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Globe2, Lightbulb, PawPrint, Plane, Users } from 'lucide-react'
 import Reveal from './Reveal'
+
+const LEARN = [
+  { icon: Globe2, t: 'Geography & World Cultures' },
+  { icon: PawPrint, t: 'Amazing Wildlife' },
+  { icon: Lightbulb, t: 'Reading & Creativity' },
+  { icon: Users, t: 'Diversity & Inclusion' },
+  { icon: Plane, t: 'Real-World Exploration' },
+]
 
 const PLACES = [
   {
@@ -44,8 +53,17 @@ export default function Series() {
   return (
     <section id="series" className="relative overflow-hidden bg-ink py-24 text-paper md:py-32">
       <div className="dotted-map absolute inset-0" />
-      <div className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-lagoon/25 blur-3xl" />
-      <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-hibiscus/20 blur-3xl" />
+
+      <Reveal className="relative mx-auto mb-16 max-w-7xl px-5 md:mb-20">
+        <img
+          src="img/brand/books-banner.webp"
+          alt="Five storybooks titled Wildlife Adventures, Beach Destinations, Iconic Cities, Natural Wonders and Global Cultures beside a camera, compass and map, with the Global Adventures Collective logo over a sunset coastline"
+          width={2000}
+          height={744}
+          loading="lazy"
+          className="aspect-[2000/744] w-full rounded-2xl border-4 border-gold/70 object-cover sm:rounded-[1.75rem]"
+        />
+      </Reveal>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-5">
         <div className="lg:col-span-2">
@@ -114,6 +132,24 @@ export default function Series() {
               </Reveal>
             )
           })}
+        </div>
+      </div>
+
+      <div className="relative mx-auto mt-24 max-w-7xl px-5">
+        <Reveal>
+          <h3 className="font-hand text-center text-5xl text-gold-light md:text-6xl">What children can learn</h3>
+        </Reveal>
+        <div role="list" className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+          {LEARN.map(({ icon: Icon, t }, i) => (
+            <Reveal key={t} delay={i * 0.06} className={i === 4 ? 'col-span-2 sm:col-span-1' : ''}>
+              <div role="listitem" className="flex flex-col items-center text-center">
+                <span className="grid h-20 w-20 place-items-center rounded-full border-2 border-gold-light bg-navy-deep/60 text-gold-light">
+                  <Icon size={32} strokeWidth={1.6} />
+                </span>
+                <span className="mt-3 max-w-[10rem] font-semibold leading-snug">{t}</span>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -12,31 +12,25 @@ export default function Updates({ interest, setInterest }: Props) {
   const submit = (e: FormEvent) => {
     e.preventDefault()
     openMail(
-      'Launch list sign-up',
-      `Please add me to the launch list.\n\nEmail: ${email}\nInterested in: ${interest}`,
+      'Newsletter sign-up',
+      `Please add me to the Global Adventures Collective newsletter.\n\nEmail: ${email}\nInterested in: ${interest}`,
     )
     setDone(true)
   }
 
   return (
-    <section id="updates" className="relative mx-auto max-w-7xl scroll-mt-10 px-5 py-20 md:py-28">
+    <section id="newsletter" className="relative mx-auto max-w-7xl scroll-mt-24 px-5 py-20 md:py-28">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-gold-light via-gold to-sunset p-8 text-ink shadow-[0_30px_60px_-30px_rgba(148,97,10,0.8)] md:p-14">
-          <img
-            src="img/mark.webp"
-            alt=""
-            aria-hidden
-            className="spin-slow pointer-events-none absolute -right-24 -top-24 w-96 max-w-none opacity-20 mix-blend-multiply"
-          />
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gold-light p-8 text-ink shadow-[0_30px_60px_-30px_rgba(148,97,10,0.8)] md:p-14">
           <div className="relative grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <p className="font-hand text-3xl text-navy-deep">be first on the flight</p>
+              <p className="font-hand text-3xl text-navy-deep">be the first to know</p>
               <h2 className="font-display mt-1 text-4xl font-semibold leading-[1.02] tracking-tight md:text-6xl">
-                Get launch updates
+                Join our newsletter
               </h2>
               <p className="mt-5 max-w-md text-lg leading-relaxed text-navy-deep/85">
-                Our books, activity books and keepsakes are coming soon. Tell us what you’re
-                most excited about and we’ll send word the moment they take off.
+                Be the first to hear about new book releases, activities, special offers and
+                exciting travel news. Tell us what you’re most excited about.
               </p>
             </div>
 
@@ -93,7 +87,7 @@ export default function Updates({ interest, setInterest }: Props) {
                     type="submit"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-navy-deep"
                   >
-                    Notify me <Send size={16} />
+                    Subscribe <Send size={16} />
                   </button>
                 </div>
               </form>

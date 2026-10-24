@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Products from './components/Products'
+import Banner from './components/Banner'
 import Learn from './components/Learn'
 import Connect from './components/Connect'
 import Footer from './components/Footer'
@@ -25,6 +26,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Products onNotify={notify} />
+        <Banner />
         <Learn />
         <Connect interest={interest} inquiry={inquiry} setInquiry={setInquiry} />
       </main>

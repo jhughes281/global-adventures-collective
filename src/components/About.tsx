@@ -1,12 +1,5 @@
-import { Compass, Heart, Lightbulb, Globe2 } from 'lucide-react'
-import Reveal from './Reveal'
-
-const MISSION = [
-  { icon: Lightbulb, t: 'Inspire curiosity' },
-  { icon: Compass, t: 'Encourage imagination' },
-  { icon: Heart, t: 'Strengthen family connections' },
-  { icon: Globe2, t: 'Introduce the wonders of the world' },
-]
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronRight, Heart } from 'lucide-react'
 
 // Founder letter: verbatim from "Founder info.pdf" (Oct 2026).
 const LETTER = [
@@ -16,77 +9,58 @@ const LETTER = [
   'Thank you for supporting my journey and helping bring this dream to life!',
 ]
 
-export default function About() {
+export default function StoryCard({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   return (
-    <section id="story" className="relative scroll-mt-20 overflow-hidden bg-paper-deep/60 py-24 md:py-32">
-      <div className="relative mx-auto grid max-w-7xl items-start gap-14 px-5 lg:grid-cols-12">
-        <div className="lg:col-span-5 lg:sticky lg:top-28">
-          <Reveal>
-            <p className="font-hand text-6xl leading-none text-ink md:text-7xl">Our Story</p>
-            <h2 className="font-display mt-4 text-3xl font-semibold leading-[1.1] tracking-tight md:text-4xl">
-              A passion for travel. A love for children. <em className="text-gold-deep">A brighter tomorrow.</em>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="relative mx-auto mt-10 max-w-md rotate-[-2.5deg] bg-card p-3 pb-12 shadow-[0_24px_50px_-18px_rgba(14,36,68,0.55)]">
-              <span className="absolute -left-2 -top-2 h-8 w-8 border-l-[10px] border-t-[10px] border-gold/80" />
-              <span className="absolute -right-2 -top-2 h-8 w-8 border-r-[10px] border-t-[10px] border-gold/80" />
-              <img
-                src="img/about.webp"
-                alt="A stack of travel books beside a globe, camera, straw hat, map and vintage suitcase"
-                loading="lazy"
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <p className="font-hand absolute inset-x-0 bottom-2.5 text-center text-3xl text-ink">
-                explore · learn · discover · grow
-              </p>
+    <aside id="story" className="relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-[1.6rem] border-2 border-sun/60 bg-white p-6 shadow-[0_12px_26px_-16px_rgba(19,40,79,0.55)]">
+      <h2 className="font-display flex items-center gap-2 text-4xl font-bold text-ink">
+        Our Story <Heart size={22} className="fill-coral text-coral" />
+      </h2>
+      <p className="mb-5 mt-3 leading-relaxed text-ink-soft">
+        Global Adventures Collective was created from a deep love for travel, a passion for
+        children’s books, and a desire to help young minds explore the world. Through engaging
+        stories and travel-inspired products, we aim to inspire curiosity, celebrate different
+        cultures, and encourage families to explore, learn, and create unforgettable adventures
+        together.
+      </p>
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls="founder-letter"
+        className="mt-auto inline-flex items-center justify-center gap-1 self-center rounded-full bg-sun px-6 py-3 font-extrabold uppercase tracking-wide text-ink transition hover:-translate-y-0.5 hover:bg-sun-deep"
+      >
+        {open ? 'Close the story' : 'Read our full story'}
+        <ChevronRight size={18} strokeWidth={3} className={`transition-transform ${open ? 'rotate-90' : ''}`} />
+      </button>
+    </aside>
+  )
+}
+
+export function FounderLetter({ open }: { open: boolean }) {
+  return (
+    <AnimatePresence initial={false}>
+      {open && (
+        <motion.div
+          id="founder-letter"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden"
+        >
+          <article className="mx-auto mt-10 max-w-3xl rounded-[1.75rem] border-2 border-sun/60 bg-white p-7 md:p-10">
+            <p className="font-display text-2xl font-bold leading-snug text-ink md:text-3xl">
+              Hello! I’m Brittney Jackson, Founder and Owner of Global Adventures Collective.
+            </p>
+            <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-soft">
+              {LETTER.map((p) => (
+                <p key={p.slice(0, 24)}>{p}</p>
+              ))}
             </div>
-          </Reveal>
-        </div>
-
-        <div className="lg:col-span-7">
-          <Reveal>
-            <article className="relative rounded-[1.75rem] border border-gold/40 bg-card p-7 md:p-11">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-deep">Meet the founder</p>
-              <p className="font-display mt-4 text-2xl font-semibold leading-snug md:text-[1.75rem]">
-                Hello! I’m Brittney Jackson, Founder and Owner of Global Adventures Collective.
-              </p>
-              <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-soft">
-                {LETTER.map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
-                ))}
-              </div>
-              <div className="mt-8 border-t border-gold/40 pt-5">
-                <p className="font-hand text-4xl leading-none text-ink">Brittney Jackson</p>
-                <p className="mt-1 text-sm italic text-ink-soft">Founder &amp; Owner, Global Adventures Collective</p>
-              </div>
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <blockquote className="font-display mt-10 border-l-4 border-gold pl-6 text-2xl italic leading-snug text-ink md:text-[1.65rem]">
-              “Every child deserves the opportunity to discover the world, even if their journey
-              begins with a book.”
-            </blockquote>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="mt-10 rounded-3xl bg-ink p-6 text-paper md:p-8">
-              <p className="font-hand text-3xl text-gold-light">Our mission</p>
-              <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                {MISSION.map(({ icon: Icon, t }) => (
-                  <li key={t} className="flex items-center gap-3">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold-light/60 text-gold-light">
-                      <Icon size={20} />
-                    </span>
-                    <span className="font-medium leading-snug">{t}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
+            <p className="font-hand mt-6 text-4xl text-ink">Brittney Jackson</p>
+            <p className="text-sm italic text-ink-soft">Founder &amp; Owner, Global Adventures Collective</p>
+          </article>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

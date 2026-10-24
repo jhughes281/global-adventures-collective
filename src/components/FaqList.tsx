@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import type { QA } from '../content/faqs'
 
-export default function FaqList({ items }: { items: QA[] }) {
+export default function FaqList({ items, compact = false }: { items: QA[]; compact?: boolean }) {
   const [open, setOpen] = useState<number | null>(null)
   const base = useId()
 
@@ -19,12 +19,12 @@ export default function FaqList({ items }: { items: QA[] }) {
                 aria-expanded={on}
                 aria-controls={id}
                 onClick={() => setOpen(on ? null : i)}
-                className="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-ink transition hover:text-gold-deep md:px-6"
+                className={`flex w-full items-center justify-between gap-3 text-left font-semibold text-ink transition hover:text-sky ${compact ? 'min-h-11 px-3.5 py-2 text-sm' : 'min-h-14 px-5 py-4 md:px-6'}`}
               >
                 {it.q}
                 <Plus
                   size={20}
-                  className={`shrink-0 text-gold-deep transition-transform duration-300 ${on ? 'rotate-45' : ''}`}
+                  className={`shrink-0 text-sky transition-transform duration-300 ${on ? 'rotate-45' : ''}`}
                 />
               </button>
             </h3>
@@ -38,7 +38,7 @@ export default function FaqList({ items }: { items: QA[] }) {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="px-5 pb-5 leading-relaxed text-ink-soft md:px-6">{it.a}</p>
+                  <p className={`leading-relaxed text-ink-soft ${compact ? 'px-3.5 pb-3 text-sm' : 'px-5 pb-5 md:px-6'}`}>{it.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -6,7 +6,6 @@
 import { SITE } from '../lib/site'
 
 const EMAIL = SITE.email
-const ADDRESS = SITE.address.join(', ')
 
 export type Policy = {
   id: string
@@ -141,7 +140,7 @@ export const POLICY_LIST: Policy[] = [
       },
       {
         h: 'Contact information',
-        p: `Global Adventures Collective · ${ADDRESS} · ${EMAIL}`,
+        p: `Global Adventures Collective · ${EMAIL}`,
       },
     ],
   },

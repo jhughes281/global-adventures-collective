@@ -3,8 +3,6 @@ export const SITE = {
   email: 'info@globaladventurescollective.com',
   phone: '775-600-0045',
   phoneHref: 'tel:7756000045',
-  address: ['732 S 6th St, Ste N', 'Las Vegas, NV 89101'],
-  mapHref: 'https://www.google.com/maps/search/?api=1&query=732+S+6th+St+Ste+N+Las+Vegas+NV+89101',
   facebook: 'https://www.facebook.com/share/1CYqerXFBh/',
   instagram: 'https://www.instagram.com/global.adventures.collective?psln=ZThjZG5rNm43dHRp',
 }

@@ -24,7 +24,7 @@ export default function Footer({ onHome = true }: { onHome?: boolean }) {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-4 text-center text-xs text-white/65 sm:flex-row sm:text-left">
           <p>
-            <a href={`mailto:${SITE.email}`} className="hover:text-sun">{SITE.email}</a> · <a href={SITE.phoneHref} className="hover:text-sun">{SITE.phone}</a> · {SITE.address.join(', ')}
+            <a href={`mailto:${SITE.email}`} className="hover:text-sun">{SITE.email}</a> · <a href={SITE.phoneHref} className="hover:text-sun">{SITE.phone}</a>
           </p>
           <p>© 2026 Global Adventures Collective. All rights reserved.</p>
         </div>

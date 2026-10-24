@@ -33,20 +33,20 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur transition-shadow duration-300 ${
-        scrolled ? 'shadow-[0_8px_24px_-12px_rgba(19,40,79,0.45)]' : ''
+      className={`fixed inset-x-0 top-0 z-40 border-b-[3px] border-gold bg-navy-deep transition-shadow duration-300 ${
+        scrolled ? 'shadow-[0_10px_28px_-12px_rgba(8,26,52,0.85)]' : ''
       }`}
     >
       <div className="mx-auto flex h-[5.25rem] max-w-7xl items-center justify-between gap-4 px-5">
-        <Logo onHome={onHome} />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <Logo onHome={onHome} light />
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {NAV.map((n) => (
             <a
               key={n.label}
               href={link(n.href, n.home)}
               aria-current={n.label === current ? 'page' : undefined}
-              className={`rounded-full px-4 py-2 text-[0.95rem] font-bold transition ${
-                n.label === current ? 'bg-sun text-ink' : 'text-ink hover:bg-sky-light'
+              className={`relative py-2 font-serif text-[1.02rem] text-white transition after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:bg-gold-light after:transition-all hover:text-gold-light hover:after:w-full ${
+                n.label === current ? 'after:w-full' : 'after:w-0'
               }`}
             >
               {n.label}
@@ -55,24 +55,20 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
         </nav>
         <div className="hidden items-center gap-1 lg:flex">
           <a aria-label="Instagram" href={SITE.instagram} target="_blank" rel="noreferrer" className="grid h-11 w-11 place-items-center rounded-full transition hover:-translate-y-0.5">
-            <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-[#e1306c] text-white">
-              <Instagram size={19} />
-            </span>
+            <Instagram size={24} className="text-white" />
           </a>
           <a aria-label="Facebook" href={SITE.facebook} target="_blank" rel="noreferrer" className="grid h-11 w-11 place-items-center rounded-full transition hover:-translate-y-0.5">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-[#1877f2] text-white">
-              <Facebook size={19} fill="currentColor" strokeWidth={0} />
-            </span>
+            <Facebook size={24} className="text-white" />
           </a>
           <a
             href={link('#newsletter', true)}
-            className="ml-2 inline-flex items-center gap-2 rounded-full bg-sun px-5 py-2.5 text-sm font-extrabold text-ink shadow-[0_6px_14px_-6px_rgba(233,168,0,0.9)] transition hover:-translate-y-0.5 hover:bg-sun-deep"
+            className="ml-3 inline-flex items-center gap-2 rounded-full bg-gold-light px-5 py-2.5 font-serif text-sm font-bold text-navy-deep transition hover:-translate-y-0.5 hover:bg-gold"
           >
             <Mail size={17} /> Join our newsletter
           </a>
         </div>
         <button
-          className="grid h-11 w-11 place-items-center rounded-full bg-sun text-ink lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-full bg-gold-light text-navy-deep lg:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
@@ -86,7 +82,7 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-ink/10 bg-white lg:hidden"
+            className="overflow-hidden border-t border-gold/40 bg-navy-deep lg:hidden"
           >
             <div className="flex flex-col gap-1 px-5 pb-6 pt-2">
               {NAV.map((n) => (
@@ -94,7 +90,7 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
                   key={n.label}
                   href={link(n.href, n.home)}
                   onClick={() => setOpen(false)}
-                  className="font-display border-b border-ink/10 py-3 text-2xl font-bold text-ink"
+                  className="border-b border-white/10 py-3 font-serif text-2xl text-white"
                 >
                   {n.label}
                 </a>
@@ -102,7 +98,7 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
               <a
                 href={link('#newsletter', true)}
                 onClick={() => setOpen(false)}
-                className="mt-4 rounded-full bg-sun px-5 py-3 text-center font-extrabold text-ink"
+                className="mt-4 rounded-full bg-gold-light px-5 py-3 text-center font-serif font-bold text-navy-deep"
               >
                 Join our newsletter
               </a>

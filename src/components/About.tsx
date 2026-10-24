@@ -27,15 +27,23 @@ export default function Story() {
       <div className="grid lg:grid-cols-2">
         {/* Our Story */}
         <div className="relative overflow-hidden">
-          <img
-            src="img/scenery/story-books.webp"
-            alt=""
-            aria-hidden
-            width={740}
-            height={494}
-            className="absolute inset-y-0 left-0 hidden h-full w-[36%] object-cover object-left [mask-image:linear-gradient(90deg,#000_60%,transparent)] md:block"
-          />
-          <Reveal className="relative px-5 py-12 md:ml-[37%] md:py-14 md:pr-10">
+          <div className="grid items-center gap-8 px-5 py-12 md:grid-cols-[minmax(0,15rem)_1fr] md:py-14 md:pl-8 md:pr-10">
+          <Reveal>
+            <figure className="mx-auto w-full max-w-[15rem] -rotate-2 bg-white p-2 pb-2.5 shadow-[0_18px_34px_-16px_rgba(10,28,56,0.6)] ring-1 ring-gold/50">
+              <img
+                src="img/brand/family-airport.webp"
+                alt="Brittney Jackson and her son at the airport with their suitcases, a Departures sign and a plane taking off behind them"
+                width={800}
+                height={1202}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover object-[50%_18%]"
+              />
+              <figcaption className="font-hand mt-1.5 text-center text-2xl leading-none text-ink">
+                Adventure awaits <Heart size={14} className="inline fill-coral text-coral" />
+              </figcaption>
+            </figure>
+          </Reveal>
+          <Reveal className="relative">
             <h2 className="font-hand text-6xl leading-none text-ink">Our Story</h2>
             <p className="mt-4 leading-relaxed text-ink-soft">
               Global Adventures Collective was created from a deep love for travel, a passion for
@@ -64,6 +72,7 @@ export default function Story() {
               </button>
             </div>
           </Reveal>
+          </div>
         </div>
 
         {/* What Children Can Learn, over a lagoon scene */}

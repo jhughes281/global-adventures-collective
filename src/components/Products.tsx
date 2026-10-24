@@ -19,15 +19,15 @@ const ITEMS = [
     interest: 'Activity & coloring books',
   },
   {
-    title: 'Bookmarks',
-    sub: 'Beautiful travel-inspired designs',
+    title: 'Creative Collection',
+    sub: 'Stickers, paint kits, stationery, and more',
     img: 'img/products/creative-collection.webp',
     alt: 'Little Explorers Creative Collection coming soon: tasseled bookmarks, travel stickers, a paint kit and world-map stationery',
     interest: 'Little Explorers Creative Collection',
   },
   {
     title: 'Travel-Inspired Gifts',
-    sub: 'Stickers, stationery and more',
+    sub: 'Luggage tags, pillows, blankets, and more',
     img: 'img/products/travel-gear.webp',
     alt: 'Adventures Around the World travel products coming soon: a world-map backpack, water bottle, neck pillow, suitcase and luggage tag',
     interest: 'Travel-inspired products',

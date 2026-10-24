@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
-import { ChevronRight, CircleHelp, Handshake, Mail, Send } from 'lucide-react'
+import { CircleHelp, Mail, Send } from 'lucide-react'
 import FaqList from './FaqList'
 import { HOME_FAQS } from '../content/faqs'
 import { INQUIRY_TYPES, openMail } from '../lib/site'
@@ -39,15 +39,10 @@ export default function Connect({ interest, inquiry, setInquiry }: Props) {
     openMail(`${inquiry}: message from ${name}`, `${message}\n\n— ${name}\n${email}`)
     setSent(true)
   }
-  const wholesale = () => {
-    setInquiry('Wholesale')
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    document.getElementById('c-msg')?.focus({ preventScroll: true })
-  }
 
   return (
     <section className="bg-paper py-14">
-      <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 xl:grid-cols-[1.1fr_1.1fr_1fr_1.15fr]">
+      <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 xl:grid-cols-3">
         <div id="newsletter" className="flex scroll-mt-28 flex-col rounded-xl border-2 border-gold/60 bg-pine p-6 text-white shadow-[0_18px_36px_-20px_rgba(10,28,56,0.8)]">
           <div className="flex items-center gap-3">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold-light text-pine">
@@ -76,15 +71,6 @@ export default function Connect({ interest, inquiry, setInquiry }: Props) {
             <FaqList compact items={HOME_FAQS.slice(0, 5)} />
           </div>
           <a href="faq.html" className="btn-gold mt-5 self-center">View all FAQs</a>
-        </Panel>
-
-        <Panel icon={<Handshake size={20} />} title="Wholesale & Partnerships">
-          <p className="mt-3 leading-relaxed text-ink-soft">
-            We welcome opportunities to work with bookstores, schools, libraries, airlines, retailers, and organizations that share our passion for reading, education, and cultural exploration.
-          </p>
-          <button onClick={wholesale} className="btn-gold mt-auto self-center">
-            Inquire now <ChevronRight size={18} strokeWidth={2.5} />
-          </button>
         </Panel>
 
         <Panel id="contact" icon={<Send size={18} />} title="Contact Us">

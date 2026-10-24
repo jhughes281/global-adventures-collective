@@ -2,9 +2,9 @@ import { useCallback, useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Products from './components/Products'
-import Banner from './components/Banner'
-import Learn from './components/Learn'
+import Story from './components/About'
 import Connect from './components/Connect'
+import Journey from './components/Journey'
 import Footer from './components/Footer'
 import SkipLink from './components/SkipLink'
 import { INQUIRY_TYPES, INTERESTS } from './lib/site'
@@ -26,9 +26,9 @@ export default function App() {
       <main id="main">
         <Hero />
         <Products onNotify={notify} />
-        <Banner />
-        <Learn />
+        <Story />
         <Connect interest={interest} inquiry={inquiry} setInquiry={setInquiry} />
+        <Journey />
       </main>
       <Footer />
     </>

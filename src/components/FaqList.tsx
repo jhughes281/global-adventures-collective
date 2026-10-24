@@ -19,12 +19,12 @@ export default function FaqList({ items, compact = false }: { items: QA[]; compa
                 aria-expanded={on}
                 aria-controls={id}
                 onClick={() => setOpen(on ? null : i)}
-                className={`flex w-full items-center justify-between gap-3 text-left font-semibold text-ink transition hover:text-sky ${compact ? 'min-h-11 px-3.5 py-2 text-sm' : 'min-h-14 px-5 py-4 md:px-6'}`}
+                className={`flex w-full items-center justify-between gap-3 text-left font-semibold text-ink transition hover:text-gold-deep ${compact ? 'min-h-11 px-3.5 py-2 text-sm' : 'min-h-14 px-5 py-4 md:px-6'}`}
               >
                 {it.q}
                 <Plus
                   size={20}
-                  className={`shrink-0 text-sky transition-transform duration-300 ${on ? 'rotate-45' : ''}`}
+                  className={`shrink-0 text-gold-deep transition-transform duration-300 ${on ? 'rotate-45' : ''}`}
                 />
               </button>
             </h3>

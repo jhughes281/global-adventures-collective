@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronRight, Heart, Plane } from 'lucide-react'
+import { ChevronRight, Globe2, Heart, Lightbulb, PawPrint, Plane, Users } from 'lucide-react'
+import Reveal from './Reveal'
 
 // Founder letter: verbatim from "Founder info.pdf" (Oct 2026).
 const LETTER = [
@@ -9,100 +11,132 @@ const LETTER = [
   'Thank you for supporting my journey and helping bring this dream to life!',
 ]
 
-export default function StoryCard({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+const LEARN = [
+  { icon: Globe2, t: 'Geography & World Cultures' },
+  { icon: PawPrint, t: 'Amazing Wildlife' },
+  { icon: Lightbulb, t: 'Reading & Creativity' },
+  { icon: Users, t: 'Diversity & Inclusion' },
+  { icon: Plane, t: 'Real-World Exploration' },
+]
+
+export default function Story() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <aside id="story" className="relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-[1.6rem] border-2 border-sun/60 bg-white p-6 shadow-[0_12px_26px_-16px_rgba(19,40,79,0.55)]">
-      <div className="flex flex-col items-center gap-3 text-center">
-        <span className="relative shrink-0">
+    <section id="story" className="scroll-mt-24 border-y-[3px] border-gold/70 bg-[#f6efe0]">
+      <div className="grid lg:grid-cols-2">
+        {/* Our Story */}
+        <div className="relative overflow-hidden">
           <img
-            src="img/brand/brittney-round.webp"
-            alt="Brittney Jackson, founder of Global Adventures Collective"
-            width={360}
-            height={360}
-            loading="lazy"
-            className="h-32 w-32 rounded-full object-cover ring-4 ring-sun ring-offset-2"
+            src="img/scenery/story-books.webp"
+            alt=""
+            aria-hidden
+            width={740}
+            height={494}
+            className="absolute inset-y-0 left-0 hidden h-full w-[36%] object-cover object-left [mask-image:linear-gradient(90deg,#000_60%,transparent)] md:block"
           />
-          <span className="absolute bottom-0 right-0 grid h-10 w-10 place-items-center rounded-full bg-coral text-white ring-2 ring-white">
-            <Heart size={18} className="fill-white" />
-          </span>
-        </span>
-        <p className="leading-tight">
-          <span className="font-hand block text-4xl text-ink">Meet Brittney</span>
-          <span className="text-sm font-semibold text-ink-soft">Founder, owner &amp; mom</span>
-        </p>
+          <Reveal className="relative px-5 py-12 md:ml-[37%] md:py-14 md:pr-10">
+            <h2 className="font-hand text-6xl leading-none text-ink">Our Story</h2>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Global Adventures Collective was created from a deep love for travel, a passion for
+              children’s books, and a desire to help young minds explore the world. Through engaging
+              stories and travel-inspired products, we aim to inspire curiosity, celebrate different
+              cultures, and encourage families to explore, learn, and create unforgettable adventures
+              together.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <img
+                src="img/brand/brittney-round.webp"
+                alt="Brittney Jackson, founder of Global Adventures Collective"
+                width={360}
+                height={360}
+                loading="lazy"
+                className="h-20 w-20 rounded-full object-cover ring-[3px] ring-gold ring-offset-2 ring-offset-[#f6efe0]"
+              />
+              <button
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+                aria-controls="founder-letter"
+                className="btn-gold"
+              >
+                {open ? 'Close the story' : 'Read our full story'}
+                <ChevronRight size={18} strokeWidth={2.5} className={`transition-transform ${open ? 'rotate-90' : ''}`} />
+              </button>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* What Children Can Learn, over a lagoon scene */}
+        <div className="relative overflow-hidden">
+          <img
+            src="img/scenery/learn-bg.webp"
+            alt=""
+            aria-hidden
+            width={1080}
+            height={700}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-navy-deep/45" />
+          <Reveal className="relative px-5 py-12 md:py-14">
+            <h2 className="font-display text-center text-3xl font-semibold text-white md:text-4xl">What Children Can Learn</h2>
+            <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
+              {LEARN.map(({ icon: Icon, t }) => (
+                <li key={t} className="flex flex-col items-center text-center">
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-card text-navy-deep shadow-lg ring-2 ring-gold">
+                    <Icon size={28} strokeWidth={1.8} />
+                  </span>
+                  <span className="mt-2 max-w-[8rem] text-sm font-semibold leading-snug text-white">{t}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
       </div>
-      <h2 className="font-display mt-5 text-4xl font-bold text-ink">Our Story</h2>
-      <p className="mb-5 mt-3 leading-relaxed text-ink-soft">
-        Global Adventures Collective was created from a deep love for travel, a passion for
-        children’s books, and a desire to help young minds explore the world. Through engaging
-        stories and travel-inspired products, we aim to inspire curiosity, celebrate different
-        cultures, and encourage families to explore, learn, and create unforgettable adventures
-        together.
-      </p>
-      <button
-        onClick={onToggle}
-        aria-expanded={open}
-        aria-controls="founder-letter"
-        className="mt-auto inline-flex items-center justify-center gap-1 self-center rounded-full bg-sun px-6 py-3 font-extrabold uppercase tracking-wide text-ink transition hover:-translate-y-0.5 hover:bg-sun-deep"
-      >
-        {open ? 'Close the story' : 'Read our full story'}
-        <ChevronRight size={18} strokeWidth={3} className={`transition-transform ${open ? 'rotate-90' : ''}`} />
-      </button>
-    </aside>
-  )
-}
 
-export function FounderLetter({ open }: { open: boolean }) {
-  return (
-    <AnimatePresence initial={false}>
-      {open && (
-        <motion.div
-          id="founder-letter"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="overflow-hidden"
-        >
-          <div className="mx-auto mt-10 max-w-6xl px-5">
-            <article className="relative grid items-start gap-8 rounded-[1.75rem] border-2 border-sun/60 bg-white p-7 md:grid-cols-[22rem_1fr] md:gap-12 md:p-10">
-              {/* little dashed flight path across the top corner */}
-              <svg aria-hidden viewBox="0 0 220 60" className="pointer-events-none absolute -top-7 right-8 hidden w-56 text-sky md:block" fill="none">
-                <path d="M4 52 C 60 8, 130 60, 196 16" stroke="currentColor" strokeWidth="2.5" strokeDasharray="6 7" strokeLinecap="round" />
-              </svg>
-              <Plane aria-hidden size={30} className="absolute -top-9 right-4 hidden -rotate-12 fill-sky text-sky md:block" />
-
-              <figure className="relative mx-auto w-full max-w-[22rem] -rotate-3 bg-white p-2.5 pb-3 shadow-[0_18px_34px_-16px_rgba(19,40,79,0.6)]">
-                <span aria-hidden className="absolute -top-3 left-1/2 h-7 w-24 -translate-x-1/2 rotate-2 bg-sun/80" />
-                <img
-                  src="img/brand/brittney.webp"
-                  alt="Portrait of Brittney Jackson, smiling, in a red blouse"
-                  width={900}
-                  height={1195}
-                  loading="lazy"
-                  className="aspect-[4/5] w-full object-cover object-top"
-                />
-                <figcaption className="font-hand mt-2 text-center text-3xl leading-none text-ink">
-                  Brittney, mom &amp; founder <Heart size={16} className="inline fill-coral text-coral" />
-                </figcaption>
-              </figure>
-
-              <div>
-                <p className="font-display text-2xl font-bold leading-snug text-ink md:text-3xl">
-                  Hello! I’m Brittney Jackson, Founder and Owner of Global Adventures Collective.
-                </p>
-                <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-soft">
-                  {LETTER.map((p) => (
-                    <p key={p.slice(0, 24)}>{p}</p>
-                  ))}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id="founder-letter"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden bg-paper"
+          >
+            <div className="mx-auto max-w-6xl px-5 py-12">
+              <article className="grid items-start gap-8 rounded-2xl border border-gold/60 bg-card p-7 md:grid-cols-[22rem_1fr] md:gap-12 md:p-10">
+                <figure className="relative mx-auto w-full max-w-[22rem] -rotate-2 bg-white p-2.5 pb-3 shadow-[0_18px_34px_-16px_rgba(10,28,56,0.6)] ring-1 ring-gold/40">
+                  <img
+                    src="img/brand/brittney.webp"
+                    alt="Portrait of Brittney Jackson, smiling, in a red blouse"
+                    width={900}
+                    height={1195}
+                    loading="lazy"
+                    className="aspect-[4/5] w-full object-cover object-top"
+                  />
+                  <figcaption className="font-hand mt-2 text-center text-3xl leading-none text-ink">
+                    Brittney, mom &amp; founder <Heart size={16} className="inline fill-coral text-coral" />
+                  </figcaption>
+                </figure>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-deep">Meet the founder</p>
+                  <p className="font-display mt-3 text-2xl font-semibold leading-snug text-ink md:text-3xl">
+                    Hello! I’m Brittney Jackson, Founder and Owner of Global Adventures Collective.
+                  </p>
+                  <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-soft">
+                    {LETTER.map((p) => (
+                      <p key={p.slice(0, 24)}>{p}</p>
+                    ))}
+                  </div>
+                  <p className="font-hand mt-6 text-5xl text-ink">Brittney Jackson</p>
+                  <p className="text-sm italic text-ink-soft">Founder &amp; Owner, Global Adventures Collective</p>
                 </div>
-                <p className="font-hand mt-6 text-4xl text-ink">Brittney Jackson</p>
-                <p className="text-sm italic text-ink-soft">Founder &amp; Owner, Global Adventures Collective</p>
-              </div>
-            </article>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              </article>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   )
 }

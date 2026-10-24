@@ -12,7 +12,7 @@ const LETTER = [
 export default function StoryCard({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   return (
     <aside id="story" className="relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-[1.6rem] border-2 border-sun/60 bg-white p-6 shadow-[0_12px_26px_-16px_rgba(19,40,79,0.55)]">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-center gap-3 text-center">
         <span className="relative shrink-0">
           <img
             src="img/brand/brittney-round.webp"
@@ -20,14 +20,14 @@ export default function StoryCard({ open, onToggle }: { open: boolean; onToggle:
             width={360}
             height={360}
             loading="lazy"
-            className="h-20 w-20 rounded-full object-cover ring-4 ring-sun ring-offset-2"
+            className="h-32 w-32 rounded-full object-cover ring-4 ring-sun ring-offset-2"
           />
-          <span className="absolute -bottom-1 -right-1 grid h-8 w-8 place-items-center rounded-full bg-coral text-white ring-2 ring-white">
-            <Heart size={15} className="fill-white" />
+          <span className="absolute bottom-0 right-0 grid h-10 w-10 place-items-center rounded-full bg-coral text-white ring-2 ring-white">
+            <Heart size={18} className="fill-white" />
           </span>
         </span>
         <p className="leading-tight">
-          <span className="font-hand block text-3xl text-ink">Meet Brittney</span>
+          <span className="font-hand block text-4xl text-ink">Meet Brittney</span>
           <span className="text-sm font-semibold text-ink-soft">Founder, owner &amp; mom</span>
         </p>
       </div>
@@ -64,16 +64,16 @@ export function FounderLetter({ open }: { open: boolean }) {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="overflow-hidden"
         >
-          <div className="mx-auto mt-10 max-w-5xl px-5">
-            <article className="relative grid items-start gap-8 rounded-[1.75rem] border-2 border-sun/60 bg-white p-7 md:grid-cols-[16rem_1fr] md:gap-10 md:p-10">
+          <div className="mx-auto mt-10 max-w-6xl px-5">
+            <article className="relative grid items-start gap-8 rounded-[1.75rem] border-2 border-sun/60 bg-white p-7 md:grid-cols-[22rem_1fr] md:gap-12 md:p-10">
               {/* little dashed flight path across the top corner */}
               <svg aria-hidden viewBox="0 0 220 60" className="pointer-events-none absolute -top-7 right-8 hidden w-56 text-sky md:block" fill="none">
                 <path d="M4 52 C 60 8, 130 60, 196 16" stroke="currentColor" strokeWidth="2.5" strokeDasharray="6 7" strokeLinecap="round" />
               </svg>
               <Plane aria-hidden size={30} className="absolute -top-9 right-4 hidden -rotate-12 fill-sky text-sky md:block" />
 
-              <figure className="relative mx-auto w-full max-w-[16rem] -rotate-3 bg-white p-2.5 pb-3 shadow-[0_18px_34px_-16px_rgba(19,40,79,0.6)]">
-                <span aria-hidden className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-2 bg-sun/80" />
+              <figure className="relative mx-auto w-full max-w-[22rem] -rotate-3 bg-white p-2.5 pb-3 shadow-[0_18px_34px_-16px_rgba(19,40,79,0.6)]">
+                <span aria-hidden className="absolute -top-3 left-1/2 h-7 w-24 -translate-x-1/2 rotate-2 bg-sun/80" />
                 <img
                   src="img/brand/brittney.webp"
                   alt="Portrait of Brittney Jackson, smiling, in a red blouse"
@@ -82,7 +82,7 @@ export function FounderLetter({ open }: { open: boolean }) {
                   loading="lazy"
                   className="aspect-[4/5] w-full object-cover object-top"
                 />
-                <figcaption className="font-hand mt-2 text-center text-2xl leading-none text-ink">
+                <figcaption className="font-hand mt-2 text-center text-3xl leading-none text-ink">
                   Brittney, mom &amp; founder <Heart size={16} className="inline fill-coral text-coral" />
                 </figcaption>
               </figure>
